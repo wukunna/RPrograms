@@ -5,11 +5,11 @@
 ## The plot is saved as plot4.png
 ## 
 
-# ## change the working directory
+# ## change the working directory to the folder containing the data file
 # setwd('./Project 1')
 
 ## Load data
-file <- "./household_power_consumption.txt"
+file <- "household_power_consumption.txt"
 
 # read the data
 colnames = c("Date","Time",

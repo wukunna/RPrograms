@@ -5,11 +5,12 @@
 ## global active power. The plot is saved as plot1.png
 ## 
 
-# ## change the working directory
+# change the working directory
+# please change the working directory to the folder containing the data file
 # setwd('./Project 1')
 
 ## Load data
-file <- "./household_power_consumption.txt"
+file <- "household_power_consumption.txt"
 
 # # get a feel of the data
 # read.table(file, nrows=3, header=T, sep=";", stringsAsFactors=F, dec=".")
