@@ -17,7 +17,7 @@ colnames = c("Date","Time",
              "Voltage","Global_intensity",
              "Sub_metering_1","Sub_metering_2","Sub_metering_3")
 data <- read.table(file, skip=66637, nrows=2880, header=F, col.names=colnames,
-                   sep=";", stringsAsFactors=F, dec=".")
+                   sep=";", stringsAsFactors=F, dec=".", na.strings="?")
 
 ## Converting the dates
 data$Date <- as.Date(data$Date, format = "%d/%m/%Y")
