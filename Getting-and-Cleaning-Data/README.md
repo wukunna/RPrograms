@@ -1,4 +1,4 @@
-### Geting and Cleaning Data 
+# <b>Geting and Cleaning Data<b> 
 ## Course Project
 
 The goal of this project is to prepare tidy data that can be used for later analysis. 
@@ -24,8 +24,10 @@ In this project, we will create one R script called run_analysis.R that does the
 
 ## What you find in this repository
 
-CodeBook.md: information about raw and tidy data set and elaboration made to transform them
+CodeBook.md: Descriptions of the variables, the data, and transformations/work that performed to clean up the data 
+
 README.md: this file
-run_analysis.R: R script to transform raw data set in a tidy one
+
+run_analysis.R: R script for this project
 
 
