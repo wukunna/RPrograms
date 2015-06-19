@@ -1,4 +1,4 @@
-# <b>Geting and Cleaning Data<b> 
+#Geting and Cleaning Data
 ## Course Project
 
 The goal of this project is to prepare tidy data that can be used for later analysis. 
