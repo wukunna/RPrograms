@@ -1,4 +1,4 @@
-#Geting and Cleaning Data
+# Geting and Cleaning Data
 ## Course Project
 
 The goal of this project is to prepare tidy data that can be used for later analysis. 
@@ -13,8 +13,8 @@ Here are the data for the project:
 
 In this project, we will create one R script called run_analysis.R that does the following:
 
+0 Downloads the data file to the working directory. 
 <ol>
-<li>Downloads the data file to the working directory. </li>
 <li>Merges the training and the test sets to create one data set. </li>
 <li>Extracts only the measurements on the mean and standard deviation for each measurement. </li>
 <li>Uses descriptive activity names to name the activities in the data set. </li>
@@ -25,10 +25,12 @@ In this project, we will create one R script called run_analysis.R that does the
 
 ## What you find in this repository
 
-CodeBook.md: Descriptions of the variables, the data, and transformations/work that performed to clean up the data 
+CodeBook.md: descriptions of the variables, the data, and transformations/work that performed in run_analysis.R to clean up the data 
 
 README.md: this file
 
 run_analysis.R: R script for this project
+
+tidy_data.txt: the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject
 
 
