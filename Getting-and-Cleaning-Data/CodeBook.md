@@ -48,13 +48,42 @@ The variables generated in run_analysis.R are the following:
 
 
 ## Operations
-0. The data set is downloaded and unzipped in the local working directory with folder name, UCI HAR Dataset
-1. The training and test data sets are merged into one data set: data
-2. The measurements on the mean and standard deviation for each measurements are extracted from the data set "data" to form another data set: data_extract
-3. The names of the activities in the data set "data_extract" are re-named using descriptive activity names
-4. The names of the variables/features in the data set "data_extract" are labels using descriptive variable names
-5. Using "data_extract", a second, independent tidy data set "data_tidy" is created which contains the average of each variable for each activity and each subject
-6. The resulting tidy data set "data_tidy" is saved as ![tidy_data.txt](tidy_data.txt) 
+* Download the data for the project
+  1. Check whether the folder with the name "UCI HAR Dataset" exists
+  2. If not, create a folder "UCI HAR Dataset"
+  3. Download and unzip the data file into the local folder "UCI HAR Dataset"
+* Merge the training and the test sets to create one data set: data
+  1. Check whether the package "data.table" is ready. If not, install it. Require the package "data.table"
+  2. Read the training data sets into data frames: subject_train, activity_train & features_train
+  3. Read the test data sets into data frames: subject_test, activity_test & features_test
+  4. Merge the training and the test data into single data frames: subject, activity & features
+  5. Assign variables names using "subject", "activity" and feature_names from features.txt
+  6. Merge all the data into a single data set: data
+* Extract only the measurements on the mean and standard deviation for each measurement: data_extract
+  1. Extract the column indices that have mean or std: ind
+  2. Add subject and activity column to the array "ind"
+  3. Slice the data frame "data" to object the desired data set "data_extract"
+* Use descriptive activity names to name the activities in the data set
+  1. Get the activity labels: activity_labels
+  2. Change activity from numeric to character
+  3. Assign activity labels from "activity_labels" to "data_extract"
+  4. Factor the activity in "data_extract"
+* Appropriately label the data set with descriptive variable names
+  1. Examine the names of "data_extract"
+  2. Replace "t" in the names of "data_extract" by "Time"
+  3. Replace "f" in the names of "data_extract" by "Frequency"
+  4. Replace "Acc" in the names of "data_extract" by "Acceleration"
+  5. Replace "Gyro" in the names of "data_extract" by "Angular Velocity"
+  6. Replace "Jerk" in the names of "data_extract" by "Jerk Signal"
+  7. Replace "Mag" in the names of "data_extract" by "Magnitude"
+  8. Replace "BodyBody" in the names of "data_extract" by "Body"
+* Using "data_extract", creates a second, independent tidy data set with the average of each variable for each activity and each subject
+  1. Set subject in "data_extract" as a factor variable
+  2. Enhance the data frame "data_extract"
+  3. Apply aggregate to obtain the mean of each variable for each activity and each subject in a new data set: data_tidy
+  4. Sort "data_tidy" by subject then by activity level
+  5. Save the tidy data set "data_tidy" as ![tidy_data.txt](tidy_data.txt) 
+
 
 
 
