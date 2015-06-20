@@ -26,8 +26,8 @@ In this project, we will create one R script called run_analysis.R that will dow
 
 README.md: this file
 
-![run_analysis.R](): R script for this project
+![run_analysis.R](run_analysis.R): R script for this project
 
-![tidy_data.txt](): the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject, for verification
+![tidy_data.txt](tidy_data.txt): the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject, for verification
 
 
