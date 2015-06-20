@@ -27,7 +27,7 @@ The following files are available for the train and test data. Their description
 
 
 ## Variables 
-The variables generated in run_analysis.R are the following:
+The variables generated in ![run_analysis.R](run_analysis.R) are the following:
 
 * subject_train: data frame containing training data of subject, 7352 obs. of 1 variable
 * activity_train: data frame containing training data of activity, 7352 obs. of 1 variable
