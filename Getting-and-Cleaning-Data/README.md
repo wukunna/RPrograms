@@ -28,6 +28,6 @@ README.md: this file
 
 run_analysis.R: R script for this project
 
-tidy_data.txt: the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject
+tidy_data.txt: the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject, for verification
 
 
