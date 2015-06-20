@@ -81,7 +81,7 @@ The variables generated in ![run_analysis.R](run_analysis.R) are the following:
   7. Replace "Mag" in the names of "data_extract" by "Magnitude"
   8. Replace "BodyBody" in the names of "data_extract" by "Body"
   
-* Using "data_extract", creates a second, independent tidy data set with the average of each variable for each activity and each subject
+* Using "data_extract", create a second, independent tidy data set with the average of each variable for each activity and each subject: data_tidy
   1. Set subject in "data_extract" as a factor variable
   2. Enhance the data frame "data_extract"
   3. Apply aggregate to obtain the mean of each variable for each activity and each subject in a new data set: data_tidy
