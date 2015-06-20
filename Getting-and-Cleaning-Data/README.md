@@ -26,8 +26,8 @@ In this project, we will create one R script called run_analysis.R that will dow
 
 README.md: this file
 
-![run_analysis.R](run_analysis.R): R script for this project
+![run_analysis.R](run_analysis.R): R script for this project. This program is written for R version 3.2.0 on platform i386-w64-mingw32/i386 (32-bit). Make necessary changes to the code if it is run in other R version or platform.
 
-![tidy_data.txt](tidy_data.txt): the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject, for verification
+![tidy_data.txt](tidy_data.txt): the text file containing the second, independent tidy data set with the average of each variable for each activity and each subject, for verification purpose
 
 
