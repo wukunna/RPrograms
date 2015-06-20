@@ -1,6 +1,6 @@
 # Code Book for ![run_analysis.R](run_analysis.R)
 ## Raw Data
-The data used in run_analysis.R represents data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
+The data used in ![run_analysis.R](run_analysis.R) represents data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
 
 [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
@@ -26,8 +26,6 @@ The following files are available for the train and test data. Their description
 * 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.
 
 
-
-
 ## Variables 
 The variables generated in run_analysis.R are the following:
 
@@ -48,13 +46,12 @@ The variables generated in run_analysis.R are the following:
 * data_tidy: data frame containing an independent tidy data set with the average of each variable for each activity and each subject, 180 obs. of 68 variables
 
 
-
-
 ## Operations performed in ![run_analysis.R](run_analysis.R)
 * Download the data for the project
   1. Check whether the folder with the name "UCI HAR Dataset" exists
   2. If not, create a folder "UCI HAR Dataset"
   3. Download and unzip the data file into the local folder "UCI HAR Dataset"
+  
 * Merge the training and the test sets to create one data set: data
   1. Check whether the package "data.table" is ready. If not, install it. Require the package "data.table"
   2. Read the training data sets into data frames: subject_train, activity_train & features_train
@@ -62,15 +59,18 @@ The variables generated in run_analysis.R are the following:
   4. Merge the training and the test data into single data frames: subject, activity & features
   5. Assign variables names using "subject", "activity" and feature_names from features.txt
   6. Merge all the data into a single data set: data
+  
 * Extract only the measurements on the mean and standard deviation for each measurement: data_extract
   1. Extract the column indices that have mean or std: ind
   2. Add subject and activity column to the array "ind"
   3. Slice the data frame "data" to object the desired data set "data_extract"
+  
 * Use descriptive activity names to name the activities in the data set
   1. Get the activity labels: activity_labels
   2. Change activity from numeric to character
   3. Assign activity labels from "activity_labels" to "data_extract"
   4. Factor the activity in "data_extract"
+  
 * Appropriately label the data set with descriptive variable names
   1. Examine the names of "data_extract"
   2. Replace "t" in the names of "data_extract" by "Time"
@@ -80,15 +80,13 @@ The variables generated in run_analysis.R are the following:
   6. Replace "Jerk" in the names of "data_extract" by "Jerk Signal"
   7. Replace "Mag" in the names of "data_extract" by "Magnitude"
   8. Replace "BodyBody" in the names of "data_extract" by "Body"
+  
 * Using "data_extract", creates a second, independent tidy data set with the average of each variable for each activity and each subject
   1. Set subject in "data_extract" as a factor variable
   2. Enhance the data frame "data_extract"
   3. Apply aggregate to obtain the mean of each variable for each activity and each subject in a new data set: data_tidy
   4. Sort "data_tidy" by subject then by activity level
   5. Save the tidy data set "data_tidy" as ![tidy_data.txt](tidy_data.txt) 
-
-
-
 
 
 
