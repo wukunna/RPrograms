@@ -54,7 +54,7 @@ The variables generated in run_analysis.R are the following:
 3. The names of the activities in the data set "data_extract" are re-named using descriptive activity names
 4. The names of the variables/features in the data set "data_extract" are labels using descriptive variable names
 5. Using "data_extract", a second, independent tidy data set "data_tidy" is created which contains the average of each variable for each activity and each subject
-6. The resulting tidy data set "data_tidy" is saved as ![data_tidy](data_tidy.txt) 
+6. The resulting tidy data set "data_tidy" is saved as ![data_tidy.txt](data_tidy.txt) 
 
 
 
