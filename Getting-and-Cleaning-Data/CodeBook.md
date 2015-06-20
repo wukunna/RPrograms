@@ -1,10 +1,10 @@
-# Code Book for run_analysis.R
+# Code Book for ![run_analysis.R](run_analysis.R)
 ## Raw Data
 The data used in run_analysis.R represents data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
 
 [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
-It can be downloaded from: 
+The raw data can be downloaded from: 
 
 [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip )
 
@@ -16,7 +16,6 @@ The zipped file contains the following files:
 * 'activity_labels.txt': Links the class labels with their activity name.
 * 'train/X_train.txt': Training set.
 * 'train/y_train.txt': Training labels.
-
 * 'test/X_test.txt': Test set.
 * 'test/y_test.txt': Test labels.
 
@@ -25,6 +24,8 @@ The following files are available for the train and test data. Their description
 * 'train/Inertial Signals/total_acc_x_train.txt': The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. Every row shows a 128 element vector. The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_train.txt' files for the Y and Z axis. 
 * 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration.
 * 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.
+
+
 
 
 ## Variables 
@@ -47,7 +48,9 @@ The variables generated in run_analysis.R are the following:
 * data_tidy: data frame containing an independent tidy data set with the average of each variable for each activity and each subject, 180 obs. of 68 variables
 
 
-## Operations
+
+
+## Operations performed in ![run_analysis.R](run_analysis.R)
 * Download the data for the project
   1. Check whether the folder with the name "UCI HAR Dataset" exists
   2. If not, create a folder "UCI HAR Dataset"
@@ -83,6 +86,8 @@ The variables generated in run_analysis.R are the following:
   3. Apply aggregate to obtain the mean of each variable for each activity and each subject in a new data set: data_tidy
   4. Sort "data_tidy" by subject then by activity level
   5. Save the tidy data set "data_tidy" as ![tidy_data.txt](tidy_data.txt) 
+
+
 
 
 
