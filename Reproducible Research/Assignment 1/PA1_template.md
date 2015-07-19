@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 
-1. Download, unzip and import the data as data frame "data":
+### Download, unzip and import the data as data frame "data":
 
 
 ```r
@@ -35,7 +35,7 @@ head(data)
 ## 6    NA 2012-10-01       25
 ```
 
-2. Process/transform the data into a format suitable for further analysis
+### Process/transform the data into a format suitable for further analysis
 
 Transform the date attribute to time stamp
 
@@ -65,7 +65,7 @@ head(data)
 
 For this part of the assignment, the missing values in the dataset is ignored.
 
-1. Calculate the total number of steps taken per day
+### Calculate the total number of steps taken per day
 
 ```r
 data_steps_by_day <- aggregate(data$steps, list(data$date), sum, na.rm=TRUE)
@@ -83,7 +83,7 @@ head(data_steps_by_day)
 ## 6 2012-10-06 15420
 ```
 
-2. Make a histogram of the total number of steps taken each day
+### Make a histogram of the total number of steps taken each day
 
 ```r
 hist(data_steps_by_day$steps, main = "Total No. of Steps Taken Each Day",
@@ -92,7 +92,7 @@ hist(data_steps_by_day$steps, main = "Total No. of Steps Taken Each Day",
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+### Calculate and report the mean and median of the total number of steps taken per day
 
 The mean of the total number of steps taken per day:
 
@@ -116,7 +116,7 @@ median(data_steps_by_day$steps)
 ## What is the average daily activity pattern?
 
 
-1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+### Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 Calculate the average number of steps taken for each interval:
 
@@ -146,7 +146,7 @@ plot(mean_data$interval, mean_data$mean_steps, type = "l", col = "blue",
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
 
-2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 Maximum number of steps:
 
 ```r
@@ -171,7 +171,7 @@ mean_data$interval[mean_data$mean_steps == max(mean_data$mean_steps)]
 
 Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+### Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 
 ```r
@@ -181,7 +181,7 @@ sum(is.na(data$steps))
 ```
 ## [1] 2304
 ```
-2. Fill in all of the missing values in the dataset using the mean for that 5-minute interval
+### Fill in all of the missing values in the dataset using the mean for that 5-minute interval
 
 Merge the original data frame "data" with "mean_data"
 
@@ -202,7 +202,7 @@ data_new[Ind_NA, "steps"] <- data_new[Ind_NA,"mean_steps"]
 ```
 
 
-3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+### Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 Re-order the new data frame to preserve data and interval ordering
 
@@ -241,7 +241,7 @@ head(data_new)
 ## 327 2.0943396 2012-10-01       25
 ```
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+### Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 Calculate the total number of steps taken per day
 
@@ -298,7 +298,7 @@ The mean and median are different from the first part of the assignment where th
 
 For this part, the dataset with the filled-in missing values is used.
 
-1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+### Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
 Create a column weekday
 
@@ -337,7 +337,7 @@ head(data_new)
 ## 327 2.0943396 2012-10-01       25  Monday weekday
 ```
 
-2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+### Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
 Compute the average number of steps taken, averaged across all day types
 
