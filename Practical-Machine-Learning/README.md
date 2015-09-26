@@ -22,12 +22,8 @@ The test data are available here:
 
 The data for this project come from this source: [http://groupware.les.inf.puc-rio.br/har](http://groupware.les.inf.puc-rio.br/har). 
 
-## Tasks
 
-The goal of this project is to predict the manner in which they did the exercise. This is the "classe" variable in the 
-training set. 
-
-## Tasks
+## Task
 
 The goal of this project is to predict the manner in which they did the exercise. This is the "classe" variable in the 
 training set. 
