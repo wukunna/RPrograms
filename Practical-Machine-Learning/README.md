@@ -1,4 +1,4 @@
-# Practical Machine Learning Course Assignment
+# Practical Machine Learning Course Project
 
 ## Background
 
