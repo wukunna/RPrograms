@@ -1,0 +1,179 @@
+---
+title: 'Practical Machine Learning: Course Project'
+output:
+  html_document:
+    keep_md: yes
+  pdf_document: default
+---
+
+## Synopsis
+
+In this project, we analyse data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. Our goal is to apply machine learning algorithm to predict the manner in which they do exercise, i.e. how well (in the 5 classes) they will do it.
+
+More information is available from the website here:  http://groupware.les.inf.puc-rio.br/har
+
+## Data Processing
+
+### Download and import data
+
+First, we check whether the data files are already in the working directory and download the data files if necessary.
+
+```{r}
+
+# set options 
+options(warn=-1);
+
+# install.package("R.utils")
+library(R.utils, quietly=TRUE);
+
+# Download data
+if (!file.exists("pml-training.csv")){
+      download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", "pml-training.csv")
+      }
+
+if (!file.exists("pml-testing.csv")){
+      download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", "pml-testing.csv")
+      }
+
+# Import data 
+pml_training <- read.csv(file = 'pml-training.csv',
+                         na.strings = c('NA',''))
+pml_testing <- read.csv(file = 'pml-testing.csv', 
+                        na.strings = c('NA',''))
+
+```
+
+### Preprocess the data
+
+Take an initial look of the data:
+```{r}
+dim(pml_training)
+dim(pml_testing)
+```
+
+The training data contains 19622 records of 160 features. The testing data contains 20 sets of data for further evaluation of our developed model.
+
+Test the number of NAs in each features and see whether the feature have sufficient records to be included in the analysis:
+```{r}
+na_test1 = sapply(pml_training, function(x) {sum(is.na(x))})
+table(na_test1)
+
+na_test2 = sapply(pml_testing, function(x) {sum(is.na(x))})
+table(na_test2)
+```
+
+There are 100 features with lots of NAs (> 19000 out of the 19622 records in the training data; and 20 out of the 20 records in the testing data). Remove these features:
+```{r}
+# Get the features with lots of NAs
+NAs1 = names(na_test1[na_test1>19000])
+NAs2 = names(na_test2[na_test2==20])
+# Make sure the features are the same 
+NAs1 == NAs2
+# Remove those features with lots of NAs
+pml_training = pml_training[, !names(pml_training) %in% NAs1]
+pml_testing = pml_testing[, !names(pml_testing) %in% NAs2]
+```
+
+Take a look of the resulting features:
+```{r}
+names(pml_training)
+```
+
+The first seven features are not of our interest - not related to movement, thus can be removed.
+```{r}
+pml_training = pml_training[,-c(1:7)]
+pml_testing = pml_testing[,-c(1:7)]
+dim(pml_training)
+dim(pml_testing)
+```
+
+## Model Development
+
+### Select a model
+The variable we will be predicting on is classe:
+```{r}
+summary(pml_training$classe)
+library(ggplot2, quietly = TRUE)
+ggplot(pml_training) + geom_histogram(aes(x = classe, fill= classe))
+
+```
+
+The classes are quit well balanced (of the same order of 10^3), a random forest model can be used.
+
+### Build a model
+Load the necessay packages:
+```{r}
+library(caret, quietly=TRUE);library(e1071, quietly=TRUE);
+library(randomForest, quietly=TRUE);
+
+```
+
+Partition the training data to training set and testing set:
+```{r}
+set.seed(123)
+inTrain <- createDataPartition(pml_training$classe, p=0.75, list=FALSE )
+training <- pml_training[inTrain,]
+testing <- pml_training[-inTrain,]
+dim(training)
+dim(testing)
+```
+
+Fit a random forest model, use doParallel package to run on 4 cores.
+```{r}
+# Load packages for parallel computing
+library(doParallel, quietly=TRUE);
+library(Hmisc, quietly=TRUE);
+
+set.seed(123)
+# run on 4 cores, 200 trees each
+registerDoParallel()
+mod_rf <- foreach(ntree=rep(200,4), .combine=randomForest::combine,
+                  .packages="randomForest") %dopar% {
+                        randomForest(classe ~ ., data = training,
+                                     ntree=ntree)
+                        }
+```
+
+### Model Evaluation
+Use the testing set from data partition to evaluate the model developed.
+
+```{r}
+predictions1 <- predict(mod_rf, training)
+confusionMatrix(predictions1,training$classe)
+
+predictions2 <- predict(mod_rf, testing)
+confusionMatrix(predictions2,testing$classe)
+```
+
+The prediction accuracy on the test data set (99.5%) is greater than 99%. The out of sample error is less than 1% (1- testing accuracy = 0.5%). The model developed performs very well.
+
+## Further Prediction and Submission
+Get the prediction for the testing cases:
+
+```{r}
+ptest <- predict(mod_rf, pml_testing)
+
+ptest
+
+```
+
+Write text files for submission:
+```{r}
+pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+
+pml_write_files(ptest)
+
+```
+
+## Conclusions
+A model is developed to predict how well the participants will do exercise based on their movement data. The out of sample error is estimated to be 0.5%, which is very promising. 
+
+
+Last Modified: 27 Sep 2015
+
